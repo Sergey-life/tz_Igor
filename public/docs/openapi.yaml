@@ -1,0 +1,296 @@
+openapi: 3.0.3
+info:
+  title: Laravel
+  description: ''
+  version: 1.0.0
+servers:
+  -
+    url: 'http://localhost'
+paths:
+  /api/register:
+    post:
+      summary: ''
+      operationId: postApiRegister
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Endpoints
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  description: 'Must not be greater than 255 characters.'
+                  example: e
+                email:
+                  type: string
+                  description: 'Must be a valid email address. Must not be greater than 255 characters.'
+                  example: vbrown@example.com
+                password:
+                  type: string
+                  description: 'Must be at least 8 characters.'
+                  example: 'I"dkrB[(nw%K69=Nx#5H'
+              required:
+                - name
+                - email
+                - password
+      security: []
+  /api/login:
+    post:
+      summary: 'Login user and return a token.'
+      operationId: loginUserAndReturnAToken
+      description: ''
+      parameters: []
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  access_token: YOUR_AUTH_KEY
+                  token_type: Bearer
+                properties:
+                  access_token:
+                    type: string
+                    example: YOUR_AUTH_KEY
+                  token_type:
+                    type: string
+                    example: Bearer
+      tags:
+        - Endpoints
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                  description: 'Must be a valid email address.'
+                  example: fisher.justen@example.org
+                password:
+                  type: string
+                  description: ''
+                  example: 7|JSZ$^E3g9xKU42P
+              required:
+                - email
+                - password
+      security: []
+  /api/posts:
+    get:
+      summary: ''
+      operationId: getApiPosts
+      description: ''
+      parameters: []
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: Unauthenticated.
+                properties:
+                  message:
+                    type: string
+                    example: Unauthenticated.
+      tags:
+        - Endpoints
+      security: []
+    post:
+      summary: ''
+      operationId: postApiPosts
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Endpoints
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                title:
+                  type: string
+                  description: ''
+                  example: ut
+                body:
+                  type: string
+                  description: ''
+                  example: in
+                user_id:
+                  type: string
+                  description: ''
+                  example: possimus
+              required:
+                - title
+                - body
+                - user_id
+      security: []
+  '/api/posts/{id}':
+    get:
+      summary: ''
+      operationId: getApiPostsId
+      description: ''
+      parameters: []
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: Unauthenticated.
+                properties:
+                  message:
+                    type: string
+                    example: Unauthenticated.
+      tags:
+        - Endpoints
+      security: []
+    put:
+      summary: ''
+      operationId: putApiPostsId
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Endpoints
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                title:
+                  type: string
+                  description: ''
+                  example: est
+                body:
+                  type: string
+                  description: ''
+                  example: expedita
+              required:
+                - title
+                - body
+      security: []
+    delete:
+      summary: ''
+      operationId: deleteApiPostsId
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Endpoints
+      security: []
+    parameters:
+      -
+        in: path
+        name: id
+        description: 'The ID of the post.'
+        example: 1
+        required: true
+        schema:
+          type: integer
+  /api/logout:
+    post:
+      summary: ''
+      operationId: postApiLogout
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Endpoints
+      security: []
+  /api/currency-rates:
+    get:
+      summary: 'Get the latest currency rates.'
+      operationId: getTheLatestCurrencyRates
+      description: ''
+      parameters: []
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  rates:
+                    USD: 1
+                    EUR: 0.89
+                    GBP: 0.78
+                  base: USD
+                  date: '2024-06-05'
+                properties:
+                  rates:
+                    type: object
+                    properties:
+                      USD:
+                        type: integer
+                        example: 1
+                      EUR:
+                        type: number
+                        example: 0.89
+                      GBP:
+                        type: number
+                        example: 0.78
+                  base:
+                    type: string
+                    example: USD
+                  date:
+                    type: string
+                    example: '2024-06-05'
+        500:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  error: 'Unable to fetch currency rates'
+                properties:
+                  error:
+                    type: string
+                    example: 'Unable to fetch currency rates'
+      tags:
+        - Endpoints
+  /api/user:
+    get:
+      summary: ''
+      operationId: getApiUser
+      description: ''
+      parameters: []
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: Unauthenticated.
+                properties:
+                  message:
+                    type: string
+                    example: Unauthenticated.
+      tags:
+        - Endpoints
+      security: []
+tags:
+  -
+    name: Endpoints
+    description: ''
